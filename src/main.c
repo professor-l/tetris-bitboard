@@ -24,9 +24,11 @@ int main(void) {
 
     b.matrix[3] = 0x0000000000000000;
     b.matrix[2] = 0x0000000000000000;
-    b.matrix[1] = 0x0000000000000000;
+    b.matrix[1] = 0x000000f000ff000f;
     b.matrix[0] = 0x0556aa556aa556aa;
 
+    print_board(&b);
+    clear_lines(&b, 3);
     print_board(&b);
 }
 
@@ -70,3 +72,19 @@ void print_board(board* b) {
     }
     printf("\n");
 }
+
+void clear_lines(board* b, int lines) {
+
+    b->matrix[0] >>= (lines * b->width);
+
+    for (int i = 1; i < CHUNKS; i++) {
+        b->matrix[i - 1] |= ( b->matrix[i] << ((b->rows - lines) * b->width) );
+        b->matrix[i] >>= (lines * b->width);
+    }
+}
+
+
+
+
+
+
