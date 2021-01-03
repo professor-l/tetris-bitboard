@@ -86,7 +86,7 @@ typedef struct board {
 } board;
 ```
 
-I also implemented a function to print the board out in a legible manner with the signature `void print_board(board* b)`, but it exists for debugging and development purposes, and it's kind of long and ugly, so for now it exists only in the codebase, and it's not overviewed here.
+I also implemented a function to print the board out in a legible manner with the signature `void print_board(board* b)`, but it exists for debugging and development purposes, and it's kind of long and ugly, so for now it exists only in the codebase and is not overviewed here.
 
 This is the basics taken care of - we have a matrix now. The next step is the simplest and most frequenty board manipulation in the game of Tetris: the line clear.
 

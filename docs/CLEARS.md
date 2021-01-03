@@ -9,7 +9,7 @@ Recall our variable definitions:
 - The number of overflow bits `p`
 - The height of the board `h`
 
-Line clears aren't terrible complex, but the addition of multiple consecutive `long long`s in memory does complicate them slightly. In order to properly implement them, I take advantage of the key assumption that I will never want to clear more than four lines at once, but each chunk within the board stores six lines. In other words, if I want to clear `l` lines, I can always assume that `l < r`.
+Line clears aren't terribly complex, but the addition of multiple consecutive `long long`s in memory does complicate them slightly. In order to properly implement them, I take advantage of the key assumption that I will never want to clear more than four lines at once (`l <= 4`), but each chunk within the board stores six lines (`r = 6`). In other words, I can always assume that `l < r`.
 
 Because of this, I can effectively "cascade" the effects of a line clear up the matrix, one chunk at a time. For a single chunk, a line clear of `l` lines is merely executed as a right bitshift on the chunk of `l` rows, or `l * w` bits. This brings in 0's from the left to fill the gap which, in a multi-chunk matrix, we must then repopulate with the bottom `l` rows of the chunk immediately above this one (the next chunk in our array).
 
